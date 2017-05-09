@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import fdi.ucm.appagar.ActivityInicio;
 import fdi.ucm.appagar.R;
-import fdi.ucm.appagar.tablahtml;
 
 public class GestionarCuenta extends AppCompatActivity {
 

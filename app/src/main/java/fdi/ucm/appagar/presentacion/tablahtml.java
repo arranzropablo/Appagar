@@ -1,8 +1,10 @@
-package fdi.ucm.appagar;
+package fdi.ucm.appagar.presentacion;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
+
+import fdi.ucm.appagar.R;
 
 public class tablahtml extends AppCompatActivity {
 
