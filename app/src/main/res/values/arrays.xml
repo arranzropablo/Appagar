@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Tabla_Participantes">
+        <item>Participante</item>
+        <item>Total pagado</item>
+        <item>Importe por persona</item>
+        <item>Cantidad a pagar/cobrar</item>
+    </string-array>
+</resources>
