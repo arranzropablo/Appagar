@@ -1,21 +1,19 @@
 package fdi.ucm.appagar.presentacion;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import fdi.ucm.appagar.ActivityInicio;
 import fdi.ucm.appagar.R;
-
-import static android.R.attr.start;
+import fdi.ucm.appagar.tablahtml;
 
 public class GestionarCuenta extends AppCompatActivity {
 
@@ -66,7 +64,7 @@ public class GestionarCuenta extends AppCompatActivity {
             public void onClick(View view) {
                 Bundle b = new Bundle();
                 b.putString("cuenta", cuenta);
-                Intent i = new Intent(GestionarCuenta.this, TablaCuenta.class);
+                Intent i = new Intent(GestionarCuenta.this, tablahtml.class);
                 i.putExtras(b);
                 startActivity(i);
             }

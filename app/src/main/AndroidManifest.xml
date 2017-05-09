@@ -23,7 +23,8 @@
         <activity android:name=".presentacion.NuevoPago" />
         <activity android:name=".presentacion.NuevoGasto" />
         <activity android:name=".presentacion.Ayuda" />
-        <activity android:name=".presentacion.TablaCuenta"></activity>
+        <activity android:name=".presentacion.TablaCuenta" />
+        <activity android:name=".tablahtml" />
     </application>
 
 </manifest>
