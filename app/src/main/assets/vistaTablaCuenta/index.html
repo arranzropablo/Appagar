@@ -7,18 +7,23 @@
     <!--https://codepen.io/chrisota/full/rCGIF/-->
     <!-- al abrir la vista podemos hacer efecto acordeon-->
     <!--Podriamos hacer lo de pagar o aportar dinero en version web, es decir dos botones en esta vista qe al pulsarlos se desplieguen los campos de texto-->
+    <script type="text/javascript">
+        function addNCols(){
+            var nParticipantes = Android.getNumParticipantes();
+            for(i = 0; i < nParticipantes; i++){
+                document.getElementById("headrow").innerHTML.append('<th>sadasds</th>');
+            }
+        }
+
+
+    </script>
 </head>
-<body>
+<body onload='addNCols();'>
 <table>
 
     <thead>
-    <tr>
-
+    <tr id="headrow">
         <th></th>
-
-        <th>Participante1</th>
-
-        <th>Participante2</th>
 
     </tr>
     </thead>
@@ -27,25 +32,16 @@
     <!-- de momento luego enun body t0do, luego podemos hacer varios tbody y qe los otros estn escondidos y solo se muestre el total x persona al principio per luego dandole a algun lao se despliegue el tro tbody-->
     <tr class="sombreado">
         <td>Total pagado</td>
-        <td>50€</td>
-        <td>10€</td>
     </tr>
     <tr>
         <td>Importe por persona</td>
-        <td>30€</td>
-        <!-- estas columnas se pueden juntar xq el importe por persona es siempre el mismo-->
-        <td>30€</td>
+        <!--lo qe vaya despues de esto yo lo juntaria con colspan porqe es el mismo valor en todas las cols-->
     </tr>
     <tr class="sombreado">
-        <td>Cantidad a pagar/cobrar</td>
-        <td style="color:#00ff00">20€</td>
-        <td style="color:red">20€</td>
+        <td>Cantidad a pagar/cobrar</td><!--Aqui hay qe tener en cuenta lo de colorearlo-->
     </tr>
     <tr>
-        <td>Total</td>
-        <td></td>
-        <td></td><!--Aqui el total uniendo las cols-->
-        <td></td>
+        <td>Total</td><!--Aqui el total uniendo las cols-->
     </tr>
     </tbody>
 </table>
