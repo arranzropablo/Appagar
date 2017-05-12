@@ -5,12 +5,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 import fdi.ucm.appagar.negocio.DatosParticipante;
 
 public class DAOCuentas {
-    BaseDeDatos base;
-    SQLiteDatabase bd;
+    private BaseDeDatos base;
+    private SQLiteDatabase bd;
 
     public DAOCuentas (Context c) {
         base = new BaseDeDatos(c, "Base de datos", null, 1);
@@ -56,14 +58,18 @@ public class DAOCuentas {
     public boolean existsParticipante(String nombreP, String nombreC) {
         String [] s = new String [] {nombreP} ;
         Cursor c = bd.rawQuery("SELECT * FROM " + nombreC + " WHERE PARTICIPANTE=?", s);
-        return c.moveToFirst();
+        boolean b = c.moveToFirst();
+        c.close();
+        return b;
     }
 
     public double obtenerImporte(String cuenta, String deudor) {
         String [] s = new String [] {deudor} ;
         Cursor c = bd.rawQuery("SELECT CANTIDAD FROM " + cuenta + " WHERE PARTICIPANTE=?", s);
         c.moveToFirst();
-        return c.getInt(0);
+        int i = c.getInt(0);
+        c.close();
+        return i;
     }
 
     public void updateCantidad(String cuenta, String participante, double cantidad) {
@@ -74,12 +80,13 @@ public class DAOCuentas {
         String [] s = new String [] {} ;
         Cursor c = bd.rawQuery("SELECT SUM(CANTIDAD) FROM " + cuenta, s);
         c.moveToFirst();
-        return c.getInt(0);
+        int i = c.getInt(0);
+        c.close();
+        return i;
     }
 
     public ArrayList<DatosParticipante> obtenerParticipantes(String cuenta) {
-        ArrayList<DatosParticipante> participantes = new ArrayList<DatosParticipante>();
-
+        ArrayList<DatosParticipante> participantes = new ArrayList<>();
         String [] s = new String [] {} ;
         Cursor c = bd.rawQuery("SELECT * FROM " + cuenta, s);
         if (c.moveToFirst()) {
@@ -88,10 +95,43 @@ public class DAOCuentas {
             }
             while (c.moveToNext());
         }
+        c.close();
         return participantes;
     }
 
+    public List<String> obtenerNombresCuentas() {
+        Cursor c = bd.rawQuery("SELECT name AS _id FROM sqlite_master WHERE type='table' and name like 'cuenta%'", null);       // consulta sobre sqlite-master
+        // qe devuelva todas las tablas qe empiecen por "cuenta_"
+        // no consigo escapar el _ (se supone qe con \_) asiqe cojo
+        // tod0 lo qe empiece
+        //por cuenta y luego ya lo filtro en codigo
+        //aunqe en teoria no habra ninguna qe no tenga la _ si la base de datos es desde 0...
+        //no se si deberiamos asegurarnos  o dejarlo porqe no habra ninguna
+        List<String> names = new Vector<>();
+        if (c.moveToFirst()) {
+            do {
+                if (c.getString(0).contains("cuenta_")) {
+                    names.add(c.getString(0).replace("cuenta_", ""));
+                }
+            }
+            while (c.moveToNext());
+        }
+        c.close();
+        return names;
+    }
 
+    public List<String> obtenerNombresParticipantes(String nombreCuenta) {
+        Cursor c = bd.rawQuery("SELECT PARTICIPANTE AS _id FROM " + nombreCuenta + ";", null);       // consulta sobre sqlite-master
+        List<String> names = new Vector<>();
+        if (c.moveToFirst()) {
+            do {
+                names.add(c.getString(0));
+            }
+            while (c.moveToNext());
+        }
+        c.close();
+        return names;
+    }
 
 
     /*

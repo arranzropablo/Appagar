@@ -3,10 +3,6 @@ package fdi.ucm.appagar.negocio;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-/**
- * Created by jalbe on 03/05/2017.
- */
-
 public class DatosCuenta {
     private double totalCuenta;
     private double deuda;
@@ -35,7 +31,7 @@ public class DatosCuenta {
         return participantes.get(posicion);
     }
 
-    public void ajustarDecimales () {
+    private void ajustarDecimales() {
         DecimalFormat df = new DecimalFormat("#.00");
 
         String totalCuenta = df.format(this.totalCuenta);

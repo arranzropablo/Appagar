@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:focusableInTouchMode="true"
-        tools:context="fdi.ucm.appagar.presentacion.FinalizarCuenta">
-
+    android:layout_height="fill_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -42,23 +28,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre de cuenta:"
+                    android:text="Elige una cuenta:"
                     android:id="@+id/textNombreCuentaEliminar"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
                     android:layout_marginTop="50dp" />
-                <EditText
+
+                <Spinner
+                    android:id="@+id/spinnerFinalizarNombres"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/inputNombreCuentaEliminar"
-                    android:layout_alignParentStart="true" />
+                    android:layout_height="wrap_content" />
+
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Finalizar cuenta"
                     android:id="@+id/buttonRemoveCuenta"
-                    android:layout_below="@+id/editText"
-
                     android:layout_gravity="center_horizontal"/>
 
 
@@ -69,5 +52,4 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
     </ScrollView>

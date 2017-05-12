@@ -1,23 +1,21 @@
 package fdi.ucm.appagar.presentacion;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.Spinner;
 
 import fdi.ucm.appagar.R;
 import fdi.ucm.appagar.presentacion.controlador.Controlador;
 
 public class CargarCuenta extends AppCompatActivity {
 
-    Button botonCargar;
-    EditText inputNombre;
-    Controlador controlador;
+    private Button botonCargar;
+    private Controlador controlador;
+    private Spinner inputNombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,37 +23,24 @@ public class CargarCuenta extends AppCompatActivity {
         setContentView(R.layout.activity_cargar_cuenta);
 
         botonCargar = (Button)findViewById(R.id.buttonLoadCuenta);
-        inputNombre = (EditText)findViewById(R.id.inputNombreCuentaCargar);
+        inputNombre = (Spinner) findViewById(R.id.spinnerCargarNombres);
         controlador = new Controlador(getApplicationContext());
+
+        ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresCuentas());
+        adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inputNombre.setAdapter(adapterNombres);
+
 
         botonCargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (inputNombre.getText().length() > 0){
-                    if (controlador.exists(inputNombre.getText().toString())) {
-                        Bundle b = new Bundle();
-                        b.putString("cuenta", inputNombre.getText().toString());
-                        Intent i = new Intent(CargarCuenta.this, GestionarCuenta.class);
-                        i.putExtras(b);
-                        startActivity(i);
-                    }
-                    else {
-                        Toast toastIncorrect = Toast.makeText(getApplicationContext(), "La cuenta introducida no existe", Toast.LENGTH_SHORT);
-                        toastIncorrect.show();
-                    }
-                }
-                else{
-                    View view = CargarCuenta.this.getCurrentFocus();
-                    view.clearFocus();
-                    if (view != null) {
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                    }
-                    Toast toastEmptyName = Toast.makeText(getApplicationContext(), "Introduce un nombre.", Toast.LENGTH_SHORT);
-                    toastEmptyName.show();
-                }
-
+                Bundle b = new Bundle();
+                b.putString("cuenta", inputNombre.getSelectedItem().toString());
+                Intent i = new Intent(CargarCuenta.this, GestionarCuenta.class);
+                i.putExtras(b);
+                startActivity(i);
             }
         });
+
     }
 }

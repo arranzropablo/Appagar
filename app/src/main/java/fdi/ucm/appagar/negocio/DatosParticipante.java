@@ -1,9 +1,5 @@
 package fdi.ucm.appagar.negocio;
 
-/**
- * Created by jalbe on 03/05/2017.
- */
-
 public class DatosParticipante {
     private String nombre;
     private double cantidad;

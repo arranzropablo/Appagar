@@ -2,13 +2,14 @@ package fdi.ucm.appagar.presentacion.controlador;
 
 import android.content.Context;
 
+import java.util.List;
 import java.util.Vector;
 
 import fdi.ucm.appagar.negocio.DatosCuenta;
 import fdi.ucm.appagar.negocio.Operaciones;
 
 public class Controlador {
-    Operaciones ops;
+    private Operaciones ops;
 
     public Controlador(Context c) {
         ops = new Operaciones(c);
@@ -41,4 +42,13 @@ public class Controlador {
     public DatosCuenta obtenerDatosCuenta(String cuenta) {
         return ops.obtenerDatosCuenta(cuenta);
     }
+
+    public List<String> obtenerNombresCuentas() {
+        return ops.obtenerNombresCuentas();
+    }
+
+    public List<String> obtenerNombresParticipantes(String nombreCuenta) {
+        return ops.obtenerNombresParticipantes(nombreCuenta);
+    }
+
 }

@@ -1,11 +1,13 @@
 package fdi.ucm.appagar.presentacion;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import fdi.ucm.appagar.R;
@@ -13,8 +15,8 @@ import fdi.ucm.appagar.presentacion.controlador.Controlador;
 
 public class NuevoPago extends AppCompatActivity {
     Button aceptar;
-    EditText participante1;
-    EditText participante2;
+    Spinner participantePaga;
+    Spinner participanteRecibe;
     EditText cantidad;
     Controlador controlador;
     String cuenta;
@@ -25,44 +27,36 @@ public class NuevoPago extends AppCompatActivity {
         setContentView(R.layout.activity_nuevo_pago);
 
         aceptar = (Button)findViewById(R.id.buttonAceptarPago);
-        participante1 = (EditText)findViewById(R.id.inputParticipante1Pago);
-        participante2 = (EditText)findViewById(R.id.inputParticipante2Pago);
+        participantePaga = (Spinner) findViewById(R.id.spinnerParticipantePaga);
+        participanteRecibe = (Spinner) findViewById(R.id.spinnerParticipanteRecibe);
         cantidad = (EditText)findViewById(R.id.inputCantidadPago);
         controlador = new Controlador(getApplicationContext());
 
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
 
+        ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta));
+        adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        participantePaga.setAdapter(adapterNombres);
+        participanteRecibe.setAdapter(adapterNombres);
+
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (participante1.getText().length() > 0 && participante2.getText().length() > 0 && cantidad.getText().length() > 0) {
-                    if (controlador.existsParticipante(participante1.getText().toString(), cuenta)) {
-                        if (controlador.existsParticipante(participante2.getText().toString(), cuenta)) {
-                            try {
-                                Double importe = Double.parseDouble(cantidad.getText().toString());
-                                controlador.nuevoPago(cuenta, participante1.getText().toString(), participante2.getText().toString(), importe);
-                                Toast toastcantidad = Toast.makeText(getApplicationContext(), "Pago realizado con exito", Toast.LENGTH_SHORT);
-                                toastcantidad.show();
-                                Intent i = new Intent (NuevoPago.this, GestionarCuenta.class);
-                                Bundle b = new Bundle();
-                                b.putString("cuenta", cuenta);
-                                i.putExtras(b);
-                                startActivity(i);
-                            }
-                            catch (Exception e) {
-                                Toast toastcantidad = Toast.makeText(getApplicationContext(), "El campo 'importe' debe ser un número", Toast.LENGTH_SHORT);
-                                toastcantidad.show();
-                            }
-                        }
-                        else {
-                            Toast toastexists = Toast.makeText(getApplicationContext(), "El segundo participante no existe", Toast.LENGTH_SHORT);
-                            toastexists.show();
-                        }
-                    }
-                    else {
-                        Toast toastexists = Toast.makeText(getApplicationContext(), "El primer participante no existe", Toast.LENGTH_SHORT);
-                        toastexists.show();
+                if (cantidad.getText().length() > 0) {
+                    try {
+                        Double importe = Double.parseDouble(cantidad.getText().toString());
+                        controlador.nuevoPago(cuenta, participantePaga.getSelectedItem().toString(), participanteRecibe.getSelectedItem().toString(), importe);
+                        Toast toastcantidad = Toast.makeText(getApplicationContext(), "Pago realizado con exito", Toast.LENGTH_SHORT);
+                        toastcantidad.show();
+                        Intent i = new Intent(NuevoPago.this, GestionarCuenta.class);
+                        Bundle b = new Bundle();
+                        b.putString("cuenta", cuenta);
+                        i.putExtras(b);
+                        startActivity(i);
+                    } catch (Exception e) {
+                        Toast toastcantidad = Toast.makeText(getApplicationContext(), "El campo 'importe' debe ser un número", Toast.LENGTH_SHORT);
+                        toastcantidad.show();
                     }
                 }
                 else {

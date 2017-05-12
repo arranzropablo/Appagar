@@ -1,11 +1,13 @@
 package fdi.ucm.appagar.presentacion;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import fdi.ucm.appagar.R;
@@ -13,7 +15,7 @@ import fdi.ucm.appagar.presentacion.controlador.Controlador;
 
 public class NuevoGasto extends AppCompatActivity {
     Button aceptar;
-    EditText participante;
+    Spinner participante;
     EditText cantidad;
     Controlador controlador;
     String cuenta;
@@ -24,37 +26,34 @@ public class NuevoGasto extends AppCompatActivity {
         setContentView(R.layout.activity_nuevo_gasto);
 
         aceptar = (Button)findViewById(R.id.buttonAceptarGasto);
-        participante = (EditText)findViewById(R.id.inputParticipanteGasto);
+        participante = (Spinner) findViewById(R.id.spinnerParticipanteGasto);
         cantidad = (EditText)findViewById(R.id.inputCantidadGasto);
         controlador = new Controlador(getApplicationContext());
 
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
 
+        ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta));
+        adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        participante.setAdapter(adapterNombres);
+
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (participante.getText().length() > 0 && cantidad.getText().length() > 0) {
-                    if (controlador.existsParticipante(participante.getText().toString(), cuenta)) {
-                        try {
-                            Double importe = Double.parseDouble(cantidad.getText().toString());
-                            controlador.nuevoGasto(cuenta, participante.getText().toString(), importe);
-                            Toast toastcantidad = Toast.makeText(getApplicationContext(), "Gasto registrado con exito", Toast.LENGTH_SHORT);
-                            toastcantidad.show();
-                            Intent i = new Intent (NuevoGasto.this, GestionarCuenta.class);
-                            Bundle b = new Bundle();
-                            b.putString("cuenta", cuenta);
-                            i.putExtras(b);
-                            startActivity(i);
-                        }
-                        catch (Exception e) {
-                            Toast toastcantidad = Toast.makeText(getApplicationContext(), "El campo 'importe' debe ser un número", Toast.LENGTH_SHORT);
-                            toastcantidad.show();
-                        }
-                    }
-                    else {
-                        Toast toastexists = Toast.makeText(getApplicationContext(), "El participante no existe", Toast.LENGTH_SHORT);
-                        toastexists.show();
+                if (cantidad.getText().length() > 0) {
+                    try {
+                        Double importe = Double.parseDouble(cantidad.getText().toString());
+                        controlador.nuevoGasto(cuenta, participante.getSelectedItem().toString(), importe);
+                        Toast toastcantidad = Toast.makeText(getApplicationContext(), "Gasto registrado con exito", Toast.LENGTH_SHORT);
+                        toastcantidad.show();
+                        Intent i = new Intent(NuevoGasto.this, GestionarCuenta.class);
+                        Bundle b = new Bundle();
+                        b.putString("cuenta", cuenta);
+                        i.putExtras(b);
+                        startActivity(i);
+                    } catch (Exception e) {
+                        Toast toastcantidad = Toast.makeText(getApplicationContext(), "El campo 'importe' debe ser un número", Toast.LENGTH_SHORT);
+                        toastcantidad.show();
                     }
                 }
                 else {

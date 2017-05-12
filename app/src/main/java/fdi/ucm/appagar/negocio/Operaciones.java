@@ -3,12 +3,13 @@ package fdi.ucm.appagar.negocio;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import fdi.ucm.appagar.integracion.DAOCuentas;
 
 public class Operaciones {
-    DAOCuentas dao;
+    private DAOCuentas dao;
 
     public Operaciones (Context c) {
         dao = new DAOCuentas(c);
@@ -58,8 +59,8 @@ public class Operaciones {
     public void nuevoPago(String cuenta, String paga, String recibe, Double importe) {
         dao.abrirConexion();
 
-        double cantidadPaga = dao.obtenerImporte(nombreCuenta(cuenta), paga);             //he cambiado lo de deudor o acreedor porqe si alguien qe no tenga ni idea de qe significa eso lee nuestro codigo
-        double cantidadRecibe = dao.obtenerImporte(nombreCuenta(cuenta), recibe);         //lo mas probable es que se haga un lio (de hecho yo no sabia quien era quien, he tenido qe depurar), asi se entiende
+        double cantidadPaga = dao.obtenerImporte(nombreCuenta(cuenta), paga);
+        double cantidadRecibe = dao.obtenerImporte(nombreCuenta(cuenta), recibe);
 
         cantidadPaga += importe;
         cantidadRecibe -= importe;
@@ -91,5 +92,18 @@ public class Operaciones {
         return datos;
     }
 
+    public List<String> obtenerNombresCuentas() {
+        dao.abrirConexion();
+        List<String> nombresCuentas = dao.obtenerNombresCuentas();
+        dao.cerrarConexion();
+        return nombresCuentas;
+    }
+
+    public List<String> obtenerNombresParticipantes(String nC) {
+        dao.abrirConexion();
+        List<String> nombresParticipantes = dao.obtenerNombresParticipantes(nombreCuenta(nC));
+        dao.cerrarConexion();
+        return nombresParticipantes;
+    }
 
 }
