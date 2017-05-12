@@ -99,11 +99,13 @@ public class Operaciones {
         return nombresCuentas;
     }
 
-    public List<String> obtenerNombresParticipantes(String nC) {
+    public List<String> obtenerNombresParticipantes(String nC, String participanteExcluido) {
         dao.abrirConexion();
         List<String> nombresParticipantes = dao.obtenerNombresParticipantes(nombreCuenta(nC));
+        if (participanteExcluido != null) {
+            nombresParticipantes.remove(participanteExcluido);
+        }
         dao.cerrarConexion();
         return nombresParticipantes;
     }
-
 }

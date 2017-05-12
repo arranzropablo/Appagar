@@ -20,7 +20,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="match_parent"
@@ -62,12 +63,23 @@
                 android:id="@+id/buttonAnadirParticipante"
                 android:layout_gravity="center_horizontal" />
 
-            <TextView
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.08">
+
+                <TextView
+                    android:id="@+id/currentParticipantes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v4.widget.NestedScrollView>
+
+            <TextView
                 android:id="@+id/textInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#000000"/>
+                android:textColor="#000000" />
 
             <Button
                 android:layout_width="match_parent"

@@ -47,8 +47,8 @@ public class Controlador {
         return ops.obtenerNombresCuentas();
     }
 
-    public List<String> obtenerNombresParticipantes(String nombreCuenta) {
-        return ops.obtenerNombresParticipantes(nombreCuenta);
+    public List<String> obtenerNombresParticipantes(String nombreCuenta, String participanteExcluido) {
+        return ops.obtenerNombresParticipantes(nombreCuenta, participanteExcluido);
     }
 
 }

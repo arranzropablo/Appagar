@@ -16,15 +16,16 @@ import fdi.ucm.appagar.presentacion.controlador.Controlador;
 
 public class NuevaCuenta extends AppCompatActivity {
 
-    Button nuevo;
-    Button anadir;
-    Button continuar;
-    TextView texto;
-    EditText nuevaCuenta;
-    EditText aniadirParticipante;
-    Controlador controlador;
-    Vector<String> participantes = new Vector<>();
-    String nombreCuenta;
+    private Button nuevo;
+    private Button anadir;
+    private Button continuar;
+    private TextView texto;
+    private EditText nuevaCuenta;
+    private EditText aniadirParticipante;
+    private Controlador controlador;
+    private Vector<String> participantes = new Vector<>();
+    private String nombreCuenta;
+    private TextView currentParticipantes;
 
 
     @Override
@@ -39,6 +40,7 @@ public class NuevaCuenta extends AppCompatActivity {
         texto = (TextView)findViewById(R.id.textInfo);
         nuevaCuenta = (EditText)findViewById(R.id.inputNombreCuenta);
         aniadirParticipante = (EditText)findViewById(R.id.inputAnadirParticipante);
+        currentParticipantes = (TextView) findViewById(R.id.currentParticipantes);
 
         anadir.setEnabled(false);
         continuar.setEnabled(false);
@@ -76,7 +78,9 @@ public class NuevaCuenta extends AppCompatActivity {
                     if(participantes.isEmpty() || !participantes.contains(aniadirParticipante.getText().toString())) {
                         participantes.add(aniadirParticipante.getText().toString());
                         continuar.setEnabled(true);
+                        currentParticipantes.append(aniadirParticipante.getText().toString() + " añadido." + System.getProperty("line.separator"));
                         aniadirParticipante.setText("");
+
                         Toast toastCorrect = Toast.makeText(getApplicationContext(), "Participante añadido", Toast.LENGTH_SHORT);
                         toastCorrect.show();
                     }

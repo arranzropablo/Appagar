@@ -35,10 +35,44 @@ public class NuevoPago extends AppCompatActivity {
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
 
-        ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta));
+        ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta, null));
         adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         participantePaga.setAdapter(adapterNombres);
         participanteRecibe.setAdapter(adapterNombres);
+
+
+        /*
+
+        Esto es para que no deje seleccionar el mismo en las dos casillas, pero sale algo raro, si no lo hacemos con esto IMPORTANTE:
+        quitar lo del null y el segundo argumento de obtener participantes
+
+        participantePaga.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(NuevoPago.this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta, participantePaga.getSelectedItem().toString()));
+                adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                participanteRecibe.setAdapter(adapterNombres);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){}
+
+        });
+
+        participanteRecibe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(NuevoPago.this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta, participanteRecibe.getSelectedItem().toString()));
+                adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                participantePaga.setAdapter(adapterNombres);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){}
+
+        });
+
+        */
 
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
