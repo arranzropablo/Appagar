@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import fdi.ucm.appagar.R;
 import fdi.ucm.appagar.presentacion.controlador.Controlador;
@@ -34,11 +35,16 @@ public class CargarCuenta extends AppCompatActivity {
         botonCargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle b = new Bundle();
-                b.putString("cuenta", inputNombre.getSelectedItem().toString());
-                Intent i = new Intent(CargarCuenta.this, GestionarCuenta.class);
-                i.putExtras(b);
-                startActivity(i);
+                if (inputNombre.getSelectedItem() == null) {
+                    Toast toastVacio = Toast.makeText(getApplicationContext(), "No hay cuenta seleccionada.", Toast.LENGTH_SHORT);
+                    toastVacio.show();
+                } else {
+                    Bundle b = new Bundle();
+                    b.putString("cuenta", inputNombre.getSelectedItem().toString());
+                    Intent i = new Intent(CargarCuenta.this, GestionarCuenta.class);
+                    i.putExtras(b);
+                    startActivity(i);
+                }
             }
         });
 

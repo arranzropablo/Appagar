@@ -16,7 +16,7 @@ public class Operaciones {
     }
 
     private String nombreCuenta(String nombre){
-        return "cuenta_" + nombre;
+        return ("cuenta_" + nombre).replace(" ", "_");
     }
 
     public boolean exists(String nombre) {
@@ -99,12 +99,9 @@ public class Operaciones {
         return nombresCuentas;
     }
 
-    public List<String> obtenerNombresParticipantes(String nC, String participanteExcluido) {
+    public List<String> obtenerNombresParticipantes(String nC) {
         dao.abrirConexion();
         List<String> nombresParticipantes = dao.obtenerNombresParticipantes(nombreCuenta(nC));
-        if (participanteExcluido != null) {
-            nombresParticipantes.remove(participanteExcluido);
-        }
         dao.cerrarConexion();
         return nombresParticipantes;
     }

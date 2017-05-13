@@ -33,10 +33,18 @@ public class FinalizarCuenta extends AppCompatActivity {
         botonFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                controlador.borrarCuenta(inputNombre.getSelectedItem().toString());
-                Toast toastCorrect = Toast.makeText(getApplicationContext(), "Cuenta eliminada con éxito", Toast.LENGTH_SHORT);
-                toastCorrect.show();
+                if (inputNombre.getSelectedItem() == null) {
+                    Toast toastVacio = Toast.makeText(getApplicationContext(), "No hay cuenta seleccionada.", Toast.LENGTH_SHORT);
+                    toastVacio.show();
+                } else {
+                    controlador.borrarCuenta(inputNombre.getSelectedItem().toString());
+                    Toast toastCorrect = Toast.makeText(getApplicationContext(), "Cuenta eliminada con éxito", Toast.LENGTH_SHORT);
+                    toastCorrect.show();
 
+                    ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(FinalizarCuenta.this, android.R.layout.simple_spinner_item, controlador.obtenerNombresCuentas());
+                    adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    inputNombre.setAdapter(adapterNombres);
+                }
             }
         });
 

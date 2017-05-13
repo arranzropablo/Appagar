@@ -33,7 +33,7 @@ public class NuevoGasto extends AppCompatActivity {
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
 
-        ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta, null));
+        ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta));
         adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         participante.setAdapter(adapterNombres);
 

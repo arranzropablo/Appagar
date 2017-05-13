@@ -100,18 +100,12 @@ public class DAOCuentas {
     }
 
     public List<String> obtenerNombresCuentas() {
-        Cursor c = bd.rawQuery("SELECT name AS _id FROM sqlite_master WHERE type='table' and name like 'cuenta%'", null);       // consulta sobre sqlite-master
-        // qe devuelva todas las tablas qe empiecen por "cuenta_"
-        // no consigo escapar el _ (se supone qe con \_) asiqe cojo
-        // tod0 lo qe empiece
-        //por cuenta y luego ya lo filtro en codigo
-        //aunqe en teoria no habra ninguna qe no tenga la _ si la base de datos es desde 0...
-        //no se si deberiamos asegurarnos  o dejarlo porqe no habra ninguna
+        Cursor c = bd.rawQuery("SELECT name AS _id FROM sqlite_master WHERE type='table' and name like 'cuenta%'", null);
         List<String> names = new Vector<>();
         if (c.moveToFirst()) {
             do {
                 if (c.getString(0).contains("cuenta_")) {
-                    names.add(c.getString(0).replace("cuenta_", ""));
+                    names.add(c.getString(0).replace("cuenta_", "").replace("_", " "));
                 }
             }
             while (c.moveToNext());
@@ -121,7 +115,7 @@ public class DAOCuentas {
     }
 
     public List<String> obtenerNombresParticipantes(String nombreCuenta) {
-        Cursor c = bd.rawQuery("SELECT PARTICIPANTE AS _id FROM " + nombreCuenta + ";", null);       // consulta sobre sqlite-master
+        Cursor c = bd.rawQuery("SELECT PARTICIPANTE AS _id FROM " + nombreCuenta + ";", null);
         List<String> names = new Vector<>();
         if (c.moveToFirst()) {
             do {
@@ -133,25 +127,4 @@ public class DAOCuentas {
         return names;
     }
 
-
-    /*
-    public boolean existeParticipante(String nombreP, String nombreC) {
-        String [] s = new String [] {nombreP} ;
-        Cursor c = bd.rawQuery("SELECT * FROM " + nombreC + " WHERE PARTICIPANTE=?", s);
-        return c.moveToFirst();
-    }
-    */
-
-
-    /*
-       Esta es otra manera de comprobar si existe pero no se porqe los returns van al reves de lo que sería obvio (nota: en sqlite_master estan todas las tablas)
-        try {
-           String check = "SELECT name FROM sqlite_master WHERE type='table' AND name='"+nombre+"'";
-           bd.execSQL(check);
-           return false;
-       }
-       catch (Exception e) {
-           return true;
-       }
-       */
 }

@@ -3,42 +3,25 @@ table{
   height: 100%;
   text-align: center;
   position: relative;
-  border-collapse:collapse;
 }
-  /*
-  para k colapse el cuerpo pero no lo de arriba quizas poniendo qe colapse la tabla y lo de arriba pones un borde de 1px solid black
 
-  tambien hay qe hacer qe haya scroll horizontal y quizas arriba en los nombres un poco de padding
- */
-/*
-    antes lo ponia asi, no se para ke sirve lo de tr:nth-child
-    y molaria q no hubiera ese minicorte entre columna y columna
-  #plan tr:nth-child(odd){
-    background:#f6f5f5;
-  }
-  */
-  .sombreado{
-    background:#f6f5f5;
-  }
+.sombreado{
+  background:#f6f5f5;
+}
 
-  tr{
-    position: relative;
-    width: 100%;
-  }
-  /*
-  est para ponerle al total un fondo mas oscuro y en negrita
-    #total{
-      font-weight: 700;
-      background: #dce2e3 !important;
-    }
-  */
+tr{
+  position: relative;
+  width: 100%;
+}
+#total{
+  font-weight: 700;
+}
   
-  th{
-    /*molaria aqui q el background fueran iconos de billetitos*/
-    background: #eb278d;
-    color: #fff;
-  }    
+th{
+  background: #eb278d;
+  color: #fff;
+}
         
-  td{
-    vertical-align: middle;    
-  }
+td{
+  vertical-align: middle;
+}

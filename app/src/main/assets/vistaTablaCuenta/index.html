@@ -1,53 +1,30 @@
 <head>
     <meta charset="utf-8">
     <link href="style.css" rel="stylesheet" type="text/css"/>
-
-    <!--No se porqe hayun borde muy peqeño alrededor dela tabla-->
-
-    <!--https://codepen.io/chrisota/full/rCGIF/-->
-    <!-- al abrir la vista podemos hacer efecto acordeon-->
-    <!--Podriamos hacer lo de pagar o aportar dinero en version web, es decir dos botones en esta vista qe al pulsarlos se desplieguen los campos de texto-->
     <script type="text/javascript">
         
         function addNCols(){
-            var nParticipantes = Android.getParticipantesSize(), nRows = 4, totalCuenta = Android.getTotalCuenta(), dineroPorPersona = Android.getDeuda();
-            var nRows = 4;
+            var nParticipantes = Android.getParticipantesSize(), totalCuenta = Android.getTotalCuenta(), dineroPorPersona = Android.getDeuda();
 
             for(i = 0; i < nParticipantes; i++){
-
-                var head = document.getElementById("headrow"),
-                totalPagado = document.getElementById("totalPagadoRow"),
-                importePersona = document.getElementById("importePorPersona"),
-                cantidad = document.getElementById("cantidadDebeCobra"),
-                totalDinero = document.getElementById("total");
-
-                var textoActualHead = head.innerHTML,
-                textoActualTotalPagado = totalPagado.innerHTML,
-                textoActualImportePorPersona = importePersona.innerHTML,
-                textoActualcantidadDebeCobra = cantidad.innerHTML,
-                textoActualTotal = totalDinero.innerHTML;
-
-                head.innerHTML = textoActualHead + "<th>" + Android.getNombreParticipante(i) + "</th>";
-                totalPagado.innerHTML = textoActualTotalPagado + "<td>" + Android.getDineroParticipante(i) + "</td>";
-                importePersona.innerHTML = textoActualImportePorPersona + "<td>" + dineroPorPersona + "</td>";
-
+                document.getElementById("headrow").innerHTML += "<th>" + Android.getNombreParticipante(i) + "</th>";
+                document.getElementById("totalPagadoRow").innerHTML += "<td>" + Android.getDineroParticipante(i) + "</td>";
 
                 var cant = Android.getDeudaIndividual(i);
-
                 if (cant < 0){
-                    cantidad.innerHTML = textoActualcantidadDebeCobra + "<td style='color:green'>" + cant * (-1) + "</td>";
+                    document.getElementById("cantidadDebeCobra").innerHTML += "<td style='color:green'>" + cant * (-1) + "</td>";
                 }
                 else if (cant > 0){
-                    cantidad.innerHTML = textoActualcantidadDebeCobra + "<td style='color:red'>" + cant + "</td>";
+                    document.getElementById("cantidadDebeCobra").innerHTML += "<td style='color:red'>" + cant + "</td>";
                 }
                 else{
-                    cantidad.innerHTML = textoActualcantidadDebeCobra + "<td>" + cant + "</td>";
+                    document.getElementById("cantidadDebeCobra").innerHTML += "<td>" + cant + "</td>";
                 }
-
-
-                totalDinero.innerHTML = textoActualTotal + "<td>" +  totalCuenta + "</td>";
-
             }
+
+            document.getElementById("importePorPersona").innerHTML += "<td colspan='" + nParticipantes + "'>" + dineroPorPersona + "</td>";
+            document.getElementById("total").innerHTML += "<td colspan='" + nParticipantes + "'>" +  totalCuenta + "</td>";
+
         }
 
 
@@ -63,20 +40,19 @@
     </thead>
 
     <tbody>
-    <!-- de momento luego enun body t0do, luego podemos hacer varios tbody y qe los otros estn escondidos y solo se muestre el total x persona al principio per luego dandole a algun lao se despliegue el tro tbody-->
     <tr class="sombreado" id="totalPagadoRow">
         <td>Total pagado</td>
     </tr>
     <tr id="importePorPersona">
         <td>Importe por persona</td>
-        <!--lo qe vaya despues de esto yo lo juntaria con colspan porqe es el mismo valor en todas las cols-->
     </tr>
     <tr class="sombreado" id="cantidadDebeCobra">
-        <td>Cantidad a pagar/cobrar</td><!--Aqui hay qe tener en cuenta lo de colorearlo-->
+        <td>Cantidad a pagar/cobrar</td>
     </tr>
     <tr id="total">
-        <td>Total</td><!--Aqui el total uniendo las cols-->
+        <td>Total</td>
     </tr>
     </tbody>
+
 </table>
 </body>
