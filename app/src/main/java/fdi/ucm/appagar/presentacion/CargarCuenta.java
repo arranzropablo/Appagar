@@ -25,7 +25,7 @@ public class CargarCuenta extends AppCompatActivity {
 
         botonCargar = (Button)findViewById(R.id.buttonLoadCuenta);
         inputNombre = (Spinner) findViewById(R.id.spinnerCargarNombres);
-        controlador = new Controlador(getApplicationContext());
+        controlador = Controlador.getInstance(getApplicationContext());
 
         ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresCuentas());
         adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

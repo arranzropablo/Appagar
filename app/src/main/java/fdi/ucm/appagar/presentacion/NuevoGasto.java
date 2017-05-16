@@ -28,7 +28,7 @@ public class NuevoGasto extends AppCompatActivity {
         aceptar = (Button)findViewById(R.id.buttonAceptarGasto);
         participante = (Spinner) findViewById(R.id.spinnerParticipanteGasto);
         cantidad = (EditText)findViewById(R.id.inputCantidadGasto);
-        controlador = new Controlador(getApplicationContext());
+        controlador = Controlador.getInstance(getApplicationContext());
 
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
@@ -42,7 +42,7 @@ public class NuevoGasto extends AppCompatActivity {
             public void onClick(View view) {
                 if (cantidad.getText().length() > 0) {
                     try {
-                        Double importe = Double.parseDouble(cantidad.getText().toString());
+                        Double importe = Double.parseDouble(cantidad.getText().toString().replace(",", "."));
                         controlador.nuevoGasto(cuenta, participante.getSelectedItem().toString(), importe);
                         Toast toastcantidad = Toast.makeText(getApplicationContext(), "Gasto registrado con exito", Toast.LENGTH_SHORT);
                         toastcantidad.show();

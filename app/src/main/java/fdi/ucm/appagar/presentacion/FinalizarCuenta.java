@@ -24,7 +24,7 @@ public class FinalizarCuenta extends AppCompatActivity {
 
         botonFinalizar = (Button)findViewById(R.id.buttonRemoveCuenta);
         inputNombre = (Spinner) findViewById(R.id.spinnerFinalizarNombres);
-        controlador = new Controlador(getApplicationContext());
+        controlador = Controlador.getInstance(getApplicationContext());
 
         ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresCuentas());
         adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

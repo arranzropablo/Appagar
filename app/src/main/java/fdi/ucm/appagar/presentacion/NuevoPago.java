@@ -30,7 +30,7 @@ public class NuevoPago extends AppCompatActivity {
         participantePaga = (Spinner) findViewById(R.id.spinnerParticipantePaga);
         participanteRecibe = (Spinner) findViewById(R.id.spinnerParticipanteRecibe);
         cantidad = (EditText)findViewById(R.id.inputCantidadPago);
-        controlador = new Controlador(getApplicationContext());
+        controlador = Controlador.getInstance(getApplicationContext());
 
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
@@ -51,7 +51,7 @@ public class NuevoPago extends AppCompatActivity {
                 else {
                     if (cantidad.getText().length() > 0) {
                         try {
-                            Double importe = Double.parseDouble(cantidad.getText().toString());
+                            Double importe = Double.parseDouble(cantidad.getText().toString().replace(",", "."));
                             controlador.nuevoPago(cuenta, participantePaga.getSelectedItem().toString(), participanteRecibe.getSelectedItem().toString(), importe);
                             Toast toastcantidad = Toast.makeText(getApplicationContext(), "Pago realizado con exito", Toast.LENGTH_SHORT);
                             toastcantidad.show();

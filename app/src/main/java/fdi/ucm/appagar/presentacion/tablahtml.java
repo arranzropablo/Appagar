@@ -15,7 +15,7 @@ public class tablahtml extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tablahtml);
 
-        Controlador controlador = new Controlador(getApplicationContext());
+        Controlador controlador = Controlador.getInstance(getApplicationContext());
 
         Bundle b = this.getIntent().getExtras();
         String cuenta = b.getString("cuenta");

@@ -46,7 +46,7 @@ public class NuevaCuenta extends AppCompatActivity {
         continuar.setEnabled(false);
         aniadirParticipante.setEnabled(false);
 
-        controlador = new Controlador(getApplicationContext());
+        controlador = Controlador.getInstance(getApplicationContext());
 
         nuevo.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -105,4 +105,11 @@ public class Operaciones {
         dao.cerrarConexion();
         return nombresParticipantes;
     }
+
+    public void anadirParticipante(String nombreP, String nombreC) {
+        dao.abrirConexion();
+        dao.nuevoParticipante(nombreP, nombreCuenta(nombreC));
+        dao.cerrarConexion();
+    }
+
 }

@@ -15,17 +15,8 @@ public class JavaScriptInterface {
         datos = d;
     }
 
-    //http://stackoverflow.com/questions/11752052/passing-data-from-java-class-to-web-view-html
-    //Aqui ponemos las funciones qe vamos a usar desde javascript
-    @JavascriptInterface
-    public int getCantidad() {
-        return 1;
-    }
-
     @JavascriptInterface
     public int getParticipantesSize() {
-        //esto devuelve el num de participantes y segun eso hacemos las columnas qe sean
-        //http://stackoverflow.com/questions/14964253/how-to-dynamically-add-a-new-column-to-an-html-table
         return datos.getNumParticipantes();
     }
 

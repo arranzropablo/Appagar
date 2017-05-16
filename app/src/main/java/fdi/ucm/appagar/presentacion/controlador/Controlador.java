@@ -6,49 +6,36 @@ import java.util.List;
 import java.util.Vector;
 
 import fdi.ucm.appagar.negocio.DatosCuenta;
-import fdi.ucm.appagar.negocio.Operaciones;
 
-public class Controlador {
-    private Operaciones ops;
+abstract public class Controlador {
 
-    public Controlador(Context c) {
-        ops = new Operaciones(c);
+    private static Controlador controlador;
+
+    public static Controlador getInstance(Context c) {
+        if (controlador == null) {
+            controlador = new ControladorImp(c);
+        }
+        return controlador;
     }
 
-    public boolean exists(String nombre){
-        return ops.exists(nombre);
-    }
+    public abstract boolean exists(String nombre);
 
-    public void crearCuenta (String nombre, Vector<String> participantes) {
-        ops.crearCuenta(nombre, participantes);
-    }
+    public abstract void crearCuenta(String nombre, Vector<String> participantes);
 
-    public void borrarCuenta (String nombre) {
-        ops.borrarCuenta(nombre);
-    }
+    public abstract void borrarCuenta(String nombre);
 
-    public boolean existsParticipante(String nombreP, String nombreC) {
-        return ops.existsParticipante(nombreP, nombreC);
-    }
+    public abstract boolean existsParticipante(String nombreP, String nombreC);
 
-    public void nuevoPago(String cuenta, String deudor, String acreedor, Double importe) {
-        ops.nuevoPago(cuenta, deudor, acreedor, importe);
-    }
+    public abstract void nuevoPago(String cuenta, String deudor, String acreedor, Double importe);
 
-    public void nuevoGasto(String cuenta, String participante, Double importe) {
-        ops.nuevoGasto(cuenta, participante, importe);
-    }
+    public abstract void nuevoGasto(String cuenta, String participante, Double importe);
 
-    public DatosCuenta obtenerDatosCuenta(String cuenta) {
-        return ops.obtenerDatosCuenta(cuenta);
-    }
+    public abstract void anadirParticipante(String nombreP, String nombreC);
 
-    public List<String> obtenerNombresCuentas() {
-        return ops.obtenerNombresCuentas();
-    }
+    public abstract DatosCuenta obtenerDatosCuenta(String cuenta);
 
-    public List<String> obtenerNombresParticipantes(String nombreCuenta) {
-        return ops.obtenerNombresParticipantes(nombreCuenta);
-    }
+    public abstract List<String> obtenerNombresCuentas();
+
+    public abstract List<String> obtenerNombresParticipantes(String nombreCuenta);
 
 }
