@@ -30,7 +30,7 @@ public class DAOCuentas {
     public boolean exists(String nombre) {
 
         try {
-            String check = "SELECT name FROM sqlite_master WHERE type='table' AND name='"+nombre+"'";
+            String check = "SELECT name FROM sqlite_master WHERE type='table' AND UPPER(name)=UPPER('" + nombre + "')";
             bd.execSQL(check);
             return false;
         }
@@ -57,7 +57,7 @@ public class DAOCuentas {
 
     public boolean existsParticipante(String nombreP, String nombreC) {
         String [] s = new String [] {nombreP} ;
-        Cursor c = bd.rawQuery("SELECT * FROM " + nombreC + " WHERE PARTICIPANTE=?", s);
+        Cursor c = bd.rawQuery("SELECT * FROM " + nombreC + " WHERE UPPER(PARTICIPANTE)=UPPER(?)", s);
         boolean b = c.moveToFirst();
         c.close();
         return b;

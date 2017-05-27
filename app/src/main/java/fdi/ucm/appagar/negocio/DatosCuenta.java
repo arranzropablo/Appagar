@@ -31,6 +31,19 @@ public class DatosCuenta {
         return participantes.get(posicion);
     }
 
+    public DatosParticipante getParticipantePorNombre(String nombre) {
+        boolean enc = false;
+        int i = 0;
+        while (i < participantes.size() && !enc) {
+            if (participantes.get(i).getNombre().equalsIgnoreCase(nombre)) {
+                enc = true;
+            }
+            ++i;
+        }
+        return participantes.get(i - 1);
+    }
+
+
     private void ajustarDecimales() {
         DecimalFormat df = new DecimalFormat("#.00");
 

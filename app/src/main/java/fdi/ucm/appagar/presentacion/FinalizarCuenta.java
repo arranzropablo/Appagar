@@ -38,7 +38,7 @@ public class FinalizarCuenta extends AppCompatActivity {
                     toastVacio.show();
                 } else {
                     controlador.borrarCuenta(inputNombre.getSelectedItem().toString());
-                    Toast toastCorrect = Toast.makeText(getApplicationContext(), "Cuenta eliminada con éxito", Toast.LENGTH_SHORT);
+                    Toast toastCorrect = Toast.makeText(getApplicationContext(), "Cuenta eliminada con éxito.", Toast.LENGTH_SHORT);
                     toastCorrect.show();
 
                     ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(FinalizarCuenta.this, android.R.layout.simple_spinner_item, controlador.obtenerNombresCuentas());

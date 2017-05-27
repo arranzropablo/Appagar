@@ -56,7 +56,7 @@ public class NuevaCuenta extends AppCompatActivity {
                     toastEmptyName.show();
                 }
                 else if (controlador.exists(nuevaCuenta.getText().toString())){
-                    Toast toastExists = Toast.makeText(getApplicationContext(), "La cuenta ya existe", Toast.LENGTH_SHORT);
+                    Toast toastExists = Toast.makeText(getApplicationContext(), "La cuenta ya existe.", Toast.LENGTH_SHORT);
                     toastExists.show();
                 }
 
@@ -66,7 +66,7 @@ public class NuevaCuenta extends AppCompatActivity {
                     nuevaCuenta.setEnabled(false);
                     nuevo.setEnabled(false);
                     nombreCuenta = nuevaCuenta.getText().toString();
-                    texto.setText("Cuando acabes de añadir participantes, pulsa continuar");
+                    texto.setText("Cuando acabes de añadir participantes, pulsa continuar.");
                 }
             }
         });
@@ -81,11 +81,11 @@ public class NuevaCuenta extends AppCompatActivity {
                         currentParticipantes.append(aniadirParticipante.getText().toString() + " añadido." + System.getProperty("line.separator"));
                         aniadirParticipante.setText("");
 
-                        Toast toastCorrect = Toast.makeText(getApplicationContext(), "Participante añadido", Toast.LENGTH_SHORT);
+                        Toast toastCorrect = Toast.makeText(getApplicationContext(), "Participante añadido.", Toast.LENGTH_SHORT);
                         toastCorrect.show();
                     }
                     else {
-                        Toast toastExists = Toast.makeText(getApplicationContext(), "El participante introducido ya está en la cuenta. Prueba con otro", Toast.LENGTH_SHORT);
+                        Toast toastExists = Toast.makeText(getApplicationContext(), "El participante introducido ya está en la cuenta. Prueba con otro.", Toast.LENGTH_SHORT);
                         toastExists.show();
                     }
                 }

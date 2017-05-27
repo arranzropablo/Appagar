@@ -6,7 +6,6 @@
     android:layout_height="fill_parent"
     >
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +14,8 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="fdi.ucm.appagar.presentacion.Contacto"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="match_parent"
@@ -28,48 +28,36 @@
         android:id="@+id/textAyuda1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bienvenido a la aplicacion Appagar! Con la misma, podrás gestionar todas las cuentas de una forma rapida y sencilla. Para empezar, comenzarás en esta pantalla: \n \n"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+            android:text="Bienvenido a la aplicacion Appagar! Con esta aplicación podrás gestionar todas tus cuentas de una forma rapida y sencilla. Comenzarás con esta pantalla: \n \n" />
 
         <ImageView
             android:id="@+id/imageAyuda1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textAyuda1"
-            android:src="@drawable/ayuda1" />
+            android:layout_height="500dp"
+            android:src="@mipmap/ayuda1" />
 
         <TextView
             android:id="@+id/textAyuda2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="\n \nNueva cuenta: crea una nueva cuenta de gastos, tan solo metiendo el nombre de la misma y los participantes que quieras. Ten en cuenta que no puede haber dos cuentas con el mismo nombre! \n"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/imageAyuda1" />
+            android:text="Nueva cuenta: Crea una nueva cuenta de gastos tan solo metiendo el nombre de la cuenta y los participantes que quieras en ella. Ten en cuenta que no puede haber dos cuentas con el mismo nombre. \n" />
 
         <TextView
-        android:id="@+id/textAyuda3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cargar cuenta: carga los datos de una cuenta existente para hacer operaciones sobre ella \n"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/textAyuda2"/>
+            android:id="@+id/textAyuda3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cargar cuenta: Carga los datos de una cuenta para operar sobre ella. \n" />
 
         <TextView
-        android:id="@+id/textAyuda4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Finalizar cuenta: cuando una cuenta en común haya concluido, simplemente mete su nombre y la eliminaras \n"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/textAyuda3"/>
+            android:id="@+id/textAyuda4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finalizar cuenta: Cuando una cuenta haya concluido, simplemente elegimos su nombre y se eliminará de la base de datos.\n" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dentro de la cuenta"
+            android:text="Dentro de la cuenta:\n"
             android:id="@+id/textAyuda5"
             android:textColor="#000000"
             android:textSize="@dimen/activity_horizontal_margin"/>
@@ -78,62 +66,37 @@
             android:id="@+id/textAyuda6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Una vez hayas creado una nueva cuenta o cargado una existente, podrás realizar distintas operaciones sobre la cuenta para llevar los registros al dia. Te aparecerá la siguiente pantalla:\n\n"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/textAyuda5"/>
+            android:text="Una vez hayas creado una nueva cuenta o cargado una cuenta, podrás realizar distintas operaciones para llevar los registros al dia. Se mostrará la siguiente pantalla:\n\n" />
 
         <ImageView
             android:id="@+id/imageAyuda2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textAyuda1"
-            android:src="@drawable/ayuda2" />
+            android:layout_height="500dp"
+            android:src="@mipmap/ayuda2" />
 
         <TextView
-            android:id="@+id/textAyuda7"
+            android:id="@+id/textAyuda8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="\n\nSupongamos una cuenta que lleva todos los gastos de un viaje común a Valencia, con 5 participantes. Podrás realizar las siguientes operaciones:\n"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/imageAyuda2"/>
-
-        <TextView
-        android:id="@+id/textAyuda8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nuevo gasto: cuando un participante de la cuenta hace un gasto (por ejemplo, alquila un apartamento pagando 500€), registras su gasto en esta operación. Solo tienes que meter el nombre del participante y su importe, y ya estará registrado.\n"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/textAyuda7"/>
+            android:text="Nuevo gasto: Cuando un participante de la cuenta hace un gasto (es decir, aporta una cantidad de dinero al grupo, no a alguien en concreto), podrás registrar su gasto aquí. Solo tienes que seleccionar el nombre del participante y la cantidad aportada y ya estará registrado.\n" />
 
         <TextView
             android:id="@+id/textAyuda9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nuevo pago: cuando se producen gastos, habrá personas que han puesto de más y otras de menos, por lo que el que debe dinero debe pagar al que ha puesto de más. Cuando esto ocurra, usa esta opción. Tan solo mete a las personas involucradas y el importe pagado, y listo!\n"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/textAyuda8"/>
+            android:text="Nuevo pago: Cuando un participante de la cuenta hace un pago a otro, siendo quien lo recibe alguien concreto, y no el grupo entero, podemos registrar ese hecho aquí. Tan solo habrá que seleccionar las personas involucradas y el importe pagado, y listo.\n" />
 
         <TextView
             android:id="@+id/textAyuda10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mostrar tabla de la cuenta: aquí se mostrará toda la información: total de la cuenta, cuánto tiene que pagar cada uno, cuánto ha pagado cada uno, y cuánto debe o le deben. Esta información se actualiza automáticamentecuando introduces nuevos gastos o pagos!\n"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/textAyuda9"/>
+            android:text="Mostrar tabla de la cuenta: Esto mostrará toda la información de la cuenta: Cantidad aportada por cada uno, cuánto tiene que pagar cada uno, cuánto debe o le deben y el total de la cuenta. Esta información se actualiza automáticamente cuando realizas nuevos gastos o pagos.\n" />
 
         <TextView
             android:id="@+id/textAyuda11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Así, de una manera fácil y rápida, tendrás control sobre todos los gastos que hay en una cuenta y cuanto ha pagado cada uno, de tal manera que nadie pague más que otros.\nEmpieza ya!"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/textAyuda10"/>
+            android:text="Así, de una manera fácil y rápida, tendrás control sobre todos los gastos que realizas con otras personas, de manera que no haya confusiones.\nEmpieza ya!" />
 
 
 </LinearLayout>

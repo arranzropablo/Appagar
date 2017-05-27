@@ -11,13 +11,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import fdi.ucm.appagar.ActivityInicio;
 import fdi.ucm.appagar.R;
+import fdi.ucm.appagar.negocio.DatosCuenta;
 import fdi.ucm.appagar.presentacion.controlador.Controlador;
 
 public class GestionarCuenta extends AppCompatActivity {
@@ -42,7 +45,7 @@ public class GestionarCuenta extends AppCompatActivity {
 
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
-        text.setText("Cuenta '" + cuenta + "'");
+        text.setText("Cuenta '" + cuenta + "'.");
 
         gasto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,15 +90,47 @@ public class GestionarCuenta extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuAviso:
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! La aplicacion Appagar es la leche!");
-                sendIntent.setType("text/plain");
-                startActivity(sendIntent);
+
+
+                final AlertDialog.Builder builderAviso = new AlertDialog.Builder(this);
+                builderAviso.setTitle("Selecciona un participante al que avisar");
+
+                final Spinner inputAviso = new Spinner(this);
+                ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, c.obtenerNombresParticipantes(cuenta));
+                adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                inputAviso.setAdapter(adapterNombres);
+
+                builderAviso.setView(inputAviso);
+
+                builderAviso.setPositiveButton("Avisar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String participanteSelected = inputAviso.getSelectedItem().toString();
+                        DatosCuenta dCuenta = c.obtenerDatosCuenta(cuenta);
+                        double cantidadDebesOTeDeben = dCuenta.getDeuda() - dCuenta.getParticipantePorNombre(participanteSelected).getCantidad();
+                        String stringDebesOTeDeben = (cantidadDebesOTeDeben < 0) ? "te deben " : "tienes que pagar ";
+                        cantidadDebesOTeDeben = (cantidadDebesOTeDeben < 0) ? (-1) * cantidadDebesOTeDeben : cantidadDebesOTeDeben;
+
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! " + participanteSelected + ", estaba usando la aplicación Appagar para gestionar una cuenta que tenemos en común y he visto que aún " + stringDebesOTeDeben + cantidadDebesOTeDeben + "€ con motivo de la cuenta " + cuenta + ". No te descuides y un saludo!");
+                        sendIntent.setType("text/plain");
+                        startActivity(sendIntent);
+                    }
+                });
+                builderAviso.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builderAviso.show();
+
+
                 break;
 
             case R.id.menuAnadir:
-                String m_Text;
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Añadir participante");
 
