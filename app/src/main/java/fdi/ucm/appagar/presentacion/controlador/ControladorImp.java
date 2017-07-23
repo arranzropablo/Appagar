@@ -55,4 +55,29 @@ public class ControladorImp extends Controlador {
     public List<String> obtenerNombresParticipantes(String nombreCuenta) {
         return ops.obtenerNombresParticipantes(nombreCuenta);
     }
+
+    public int getParticipantesSize(DatosCuenta d) {
+        return ops.getParticipantesSize(d);
+    }
+
+    public String getNombreParticipante(DatosCuenta d, int pos) {
+        return ops.getNombreParticipante(d, pos);
+    }
+
+    public double getDineroParticipante(DatosCuenta d, int pos) {
+        return ops.getDineroParticipante(d, pos);
+    }
+
+    public double getTotalCuenta(DatosCuenta d) {
+        return ops.getTotalCuenta(d);
+    }
+
+    public double getDeuda(DatosCuenta d) {
+        return ops.getDeuda(d);
+    }
+
+    public double getDeudaIndividual(DatosCuenta d, int pos) {
+        return ops.getDeudaIndividual(d, pos);
+    }
+
 }

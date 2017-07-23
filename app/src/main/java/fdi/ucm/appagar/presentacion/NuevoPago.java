@@ -21,6 +21,10 @@ public class NuevoPago extends AppCompatActivity {
     Controlador controlador;
     String cuenta;
 
+    /**
+     * Método que crea la actividad
+     * @param savedInstanceState instancia
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,7 @@ public class NuevoPago extends AppCompatActivity {
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
 
+        //Crea un adaptador para mostrar los nombres de los participantes en un spinner
         ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta));
         adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         participantePaga.setAdapter(adapterNombres);
@@ -44,6 +49,7 @@ public class NuevoPago extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //Si alguien intenta pagarse a sí mismo recibe un mensaje de error
                 if (participanteRecibe.getSelectedItem().equals(participantePaga.getSelectedItem())) {
                     Toast toastError = Toast.makeText(getApplicationContext(), "No puedes pagarte a ti mismo.", Toast.LENGTH_SHORT);
                     toastError.show();

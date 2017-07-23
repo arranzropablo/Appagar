@@ -27,7 +27,10 @@ public class NuevaCuenta extends AppCompatActivity {
     private String nombreCuenta;
     private TextView currentParticipantes;
 
-
+    /**
+     * Método que crea la actividad
+     * @param savedInstanceState instancia
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,6 +51,7 @@ public class NuevaCuenta extends AppCompatActivity {
 
         controlador = Controlador.getInstance(getApplicationContext());
 
+        //Permite introducir el nombre de la cuenta a crear y el nombre de los distintos participantes
         nuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +75,8 @@ public class NuevaCuenta extends AppCompatActivity {
             }
         });
 
+        //Se activa cuando introducimos un nuevo nombre de cuenta.
+        //Por cada participante añadido lo añade a una lista escrita debajo del botón para poder observar los nombres añadidos.
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +102,7 @@ public class NuevaCuenta extends AppCompatActivity {
             }
         });
 
+        //Se activa cuando introducimos el primer participante.
         continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

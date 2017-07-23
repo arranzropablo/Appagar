@@ -20,6 +20,10 @@ public class NuevoGasto extends AppCompatActivity {
     Controlador controlador;
     String cuenta;
 
+    /**
+     * Método que crea la actividad
+     * @param savedInstanceState instancia
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,7 @@ public class NuevoGasto extends AppCompatActivity {
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
 
+        //Adapta la lista de nombres de los participantes para introducirla en un spinner
         ArrayAdapter<String> adapterNombres = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, controlador.obtenerNombresParticipantes(cuenta));
         adapterNombres.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         participante.setAdapter(adapterNombres);

@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Elige un participante:"
             android:id="@+id/textNombreCuentaEliminar"
-            android:layout_marginTop="80dp" />
+            android:layout_marginTop="40dp" />
 
         <Spinner
             android:id="@+id/spinnerParticipanteGasto"
@@ -39,7 +39,7 @@
             android:id="@+id/inputCantidadGasto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             android:hint="Importe (€)" />
 
         <Button

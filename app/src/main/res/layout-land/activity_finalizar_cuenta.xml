@@ -5,49 +5,50 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cargar cuenta"
-                android:id="@+id/textCargarCuenta"
+                android:text="Finalizar cuenta"
+                android:id="@+id/textEliminarCuenta"
                 android:textColor="#000000"
                 android:textSize="@dimen/activity_horizontal_margin"/>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="212dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="100dp"
-                android:weightSum="1">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Elige una cuenta:"
-                    android:id="@+id/textNombreCuentaCargar"
+                    android:id="@+id/textNombreCuentaEliminar"
                     android:layout_marginTop="50dp" />
 
                 <Spinner
-                    android:id="@+id/spinnerCargarNombres"
+                    android:id="@+id/spinnerFinalizarNombres"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cargar cuenta"
-                    android:id="@+id/buttonLoadCuenta"
+                    android:text="Finalizar cuenta"
+                    android:id="@+id/buttonRemoveCuenta"
                     android:layout_gravity="center_horizontal"/>
+
+
 
 
             </LinearLayout>
 
 
         </LinearLayout>
+
     </ScrollView>

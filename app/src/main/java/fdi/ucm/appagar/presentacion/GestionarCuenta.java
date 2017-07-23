@@ -18,7 +18,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import fdi.ucm.appagar.ActivityInicio;
 import fdi.ucm.appagar.R;
 import fdi.ucm.appagar.negocio.DatosCuenta;
 import fdi.ucm.appagar.presentacion.controlador.Controlador;
@@ -26,12 +25,21 @@ import fdi.ucm.appagar.presentacion.controlador.Controlador;
 public class GestionarCuenta extends AppCompatActivity {
 
     TextView text;
+    //Botón que lleva a la realización de un gasto
     Button gasto;
+    //Botón que lleva a la realización de un pago
     Button pago;
+    //Botón que lleva a la vista de la tabla
     Button tabla;
+    //Nombre de la cuenta actual
     String cuenta;
+    //Controlador de la aplicación
     Controlador c;
 
+    /**
+     * Método que crea la actividad
+     * @param savedInstanceState instancia
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +51,7 @@ public class GestionarCuenta extends AppCompatActivity {
         tabla = (Button)findViewById(R.id.buttonMostrarTabla);
         c = Controlador.getInstance(getApplicationContext());
 
+        //Bundle que contiene el nombre de la cuenta que está siendo gestionada
         Bundle b = this.getIntent().getExtras();
         cuenta = b.getString("cuenta");
         text.setText("Cuenta '" + cuenta + "'.");
@@ -81,12 +90,18 @@ public class GestionarCuenta extends AppCompatActivity {
         });
     }
 
+    /**
+     * Método que crea las opciones del menú según el xml menu2
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu2, menu);
         return true;
     }
 
+    /**
+     * Método que redirige la aplicación a la vista necesaria según la opción elegida del menú
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuAviso:
@@ -102,6 +117,7 @@ public class GestionarCuenta extends AppCompatActivity {
 
                 builderAviso.setView(inputAviso);
 
+                //Avisa con un mensaje predeterminado que se personaliza en función de la deuda
                 builderAviso.setPositiveButton("Avisar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -130,6 +146,7 @@ public class GestionarCuenta extends AppCompatActivity {
 
                 break;
 
+            //Añade un participante comprobando que sea valido
             case R.id.menuAnadir:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Añadir participante");
@@ -182,7 +199,7 @@ public class GestionarCuenta extends AppCompatActivity {
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Intent i = new Intent(GestionarCuenta.this, ActivityInicio.class);
+        Intent i = new Intent(GestionarCuenta.this, Inicio.class);
         startActivity(i);
         return true;
     }

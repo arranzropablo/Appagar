@@ -17,6 +17,10 @@ public class FinalizarCuenta extends AppCompatActivity {
     Spinner inputNombre;
     Controlador controlador;
 
+    /**
+     * Método que crea la actividad
+     * @param savedInstanceState instancia
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
