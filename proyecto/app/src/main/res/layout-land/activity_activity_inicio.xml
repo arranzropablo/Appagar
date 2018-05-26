@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageViewIconoInicial"
+                    android:layout_width="match_parent"
+                    android:layout_height="227dp"
+                    android:layout_above="@+id/buttonNuevoGasto"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/icono" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+
+                <Button
+                    android:id="@+id/buttonNuevaCuenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="Nueva cuenta de gastos" />
+
+                <Button
+                    android:id="@+id/buttonCargarCuenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Cargar Cuenta de gastos" />
+
+                <Button
+                    android:id="@+id/buttonFinalizarCuenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Finalizar Cuenta de gastos" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+</ScrollView>

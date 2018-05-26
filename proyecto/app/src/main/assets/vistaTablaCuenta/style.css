@@ -1,0 +1,27 @@
+table{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.sombreado{
+  background:#f6f5f5;
+}
+
+tr{
+  position: relative;
+  width: 100%;
+}
+#total{
+  font-weight: 700;
+}
+  
+th{
+  background: #eb278d;
+  color: #fff;
+}
+        
+td{
+  vertical-align: middle;
+}

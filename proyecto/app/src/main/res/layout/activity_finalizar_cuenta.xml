@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Finalizar cuenta"
+                android:id="@+id/textEliminarCuenta"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_horizontal_margin"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="212dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Elige una cuenta:"
+                    android:id="@+id/textNombreCuentaEliminar"
+                    android:layout_marginTop="50dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerFinalizarNombres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Finalizar cuenta"
+                    android:id="@+id/buttonRemoveCuenta"
+                    android:layout_gravity="center_horizontal"/>
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
